@@ -1,8 +1,9 @@
 from __future__ import print_function
 import re
+
 import sqlparse
-from sqlparse.sql import IdentifierList, Identifier, Function
-from sqlparse.tokens import Keyword, DML, Punctuation
+from sqlparse.sql import Function, Identifier, IdentifierList
+from sqlparse.tokens import DML, Keyword, Punctuation
 
 cleanup_regex = {
         # This matches only alphanumerics and underscores.

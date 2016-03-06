@@ -1,7 +1,9 @@
 import logging
-from prompt_toolkit.keys import Keys
-from prompt_toolkit.key_binding.manager import KeyBindingManager
+
 from prompt_toolkit.filters import Condition
+from prompt_toolkit.key_binding.manager import KeyBindingManager
+from prompt_toolkit.keys import Keys
+
 from .filters import HasSelectedCompletion
 
 _logger = logging.getLogger(__name__)

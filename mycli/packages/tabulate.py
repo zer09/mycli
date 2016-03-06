@@ -2,15 +2,14 @@
 
 """Pretty-print tabular data."""
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
+import binascii
 from collections import namedtuple
 from decimal import Decimal
 from platform import python_version_tuple
-from wcwidth import wcswidth
 import re
-import binascii
 
+from wcwidth import wcswidth
 
 if python_version_tuple()[0] < "3":
     from itertools import izip_longest

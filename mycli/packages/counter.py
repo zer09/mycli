@@ -1,7 +1,7 @@
 from __future__ import print_function
-from operator import itemgetter
 from heapq import nlargest
-from itertools import repeat, ifilter
+from itertools import ifilter, repeat
+from operator import itemgetter
 
 class Counter(dict):
     '''Dict subclass for counting hashable objects.  Sometimes called a bag

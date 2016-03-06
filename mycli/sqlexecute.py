@@ -1,6 +1,8 @@
 import logging
+
 import pymysql
 import sqlparse
+
 from .packages import connection, special
 
 _logger = logging.getLogger(__name__)

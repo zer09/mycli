@@ -1,18 +1,19 @@
 from __future__ import print_function
 from __future__ import unicode_literals
-import logging
-from prompt_toolkit.completion import Completer, Completion
-from .packages.completion_engine import suggest_type
-from .packages.parseutils import last_word
-from .packages.special.favoritequeries import favoritequeries
-from re import compile, escape
-from .packages.tabulate import table_formats
-
 try:
     from collections import Counter
 except ImportError:
     # python 2.6
     from .packages.counter import Counter
+import logging
+from re import compile, escape
+
+from prompt_toolkit.completion import Completer, Completion
+
+from .packages.completion_engine import suggest_type
+from .packages.parseutils import last_word
+from .packages.special.favoritequeries import favoritequeries
+from .packages.tabulate import table_formats
 
 _logger = logging.getLogger(__name__)
 

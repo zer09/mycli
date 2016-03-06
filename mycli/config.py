@@ -1,21 +1,21 @@
 from __future__ import print_function
-import shutil
 from io import BytesIO, TextIOWrapper
 import logging
 import os
-from os.path import exists
+import shutil
 import struct
 import sys
+
 from configobj import ConfigObj, ConfigObjError
-try:
-    basestring
-except NameError:
-    basestring = str
 try:
     from Crypto.Cipher import AES
 except ImportError:
     AES = None
 
+try:
+    basestring
+except NameError:
+    basestring = str
 
 class CryptoError(Exception):
     """
@@ -68,7 +68,7 @@ def read_config_files(files):
 
 def write_default_config(source, destination, overwrite=False):
     destination = os.path.expanduser(destination)
-    if not overwrite and exists(destination):
+    if not overwrite and os.path.exists(destination):
         return
 
     shutil.copyfile(source, destination)
@@ -84,7 +84,7 @@ def get_mylogin_cnf_path():
 
     mylogin_cnf_path = os.path.expanduser(mylogin_cnf_path)
 
-    if exists(mylogin_cnf_path):
+    if os.path.exists(mylogin_cnf_path):
         logger.debug("Found login path file at '{0}'".format(mylogin_cnf_path))
         return mylogin_cnf_path
     return None

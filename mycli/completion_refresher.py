@@ -1,10 +1,10 @@
-import threading
-from .packages.special.main import COMMANDS
 try:
     from collections import OrderedDict
 except ImportError:
     from .packages.ordereddict import OrderedDict
+import threading
 
+from .packages.special.main import COMMANDS
 from .sqlcompleter import SQLCompleter
 from .sqlexecute import SQLExecute
 

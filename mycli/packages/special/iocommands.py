@@ -1,16 +1,16 @@
-import os
-import re
+from io import open
 import locale
 import logging
+import os
+import re
 import subprocess
-from io import open
 
 import click
 import sqlparse
 
 from . import export
-from .main import special_command, NO_QUERY, PARSED_QUERY
 from .favoritequeries import favoritequeries
+from .main import NO_QUERY, PARSED_QUERY, special_command
 from .utils import handle_cd_command
 
 TIMING_ENABLED = False

@@ -1,8 +1,8 @@
+from prompt_toolkit.styles import default_style_extensions, PygmentsStyle
 from pygments.token import string_to_tokentype
 from pygments.style import Style
-from pygments.util import ClassNotFound
-from prompt_toolkit.styles import default_style_extensions, PygmentsStyle
 import pygments.styles
+from pygments.util import ClassNotFound
 
 
 def style_factory(name, cli_style):

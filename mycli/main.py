@@ -1,59 +1,54 @@
 #!/usr/bin/env python
-from __future__ import unicode_literals
-from __future__ import print_function
 
-import os
-import os.path
-import sys
-import traceback
+from __future__ import print_function, unicode_literals
+from collections import namedtuple
+from datetime import datetime
+from io import open
 import logging
+import os
+from random import choice
+import sys
 import threading
 from time import time
-from datetime import datetime
-from random import choice
-from io import open
-
-import click
-import sqlparse
-from prompt_toolkit import CommandLineInterface, Application, AbortAction
-from prompt_toolkit.interface import AcceptAction
-from prompt_toolkit.enums import DEFAULT_BUFFER
-from prompt_toolkit.shortcuts import create_prompt_layout, create_eventloop
-from prompt_toolkit.document import Document
-from prompt_toolkit.filters import Always, HasFocus, IsDone
-from prompt_toolkit.layout.processors import (HighlightMatchingBracketProcessor,
-                                              ConditionalProcessor)
-from prompt_toolkit.history import FileHistory
-from pygments.token import Token
-from configobj import ConfigObj, ConfigObjError
-
-from .packages.tabulate import tabulate, table_formats
-from .packages.expanded import expanded_table
-from .packages.special.main import (COMMANDS, NO_QUERY)
-import mycli.packages.special as special
-from .sqlcompleter import SQLCompleter
-from .clitoolbar import create_toolbar_tokens_func
-from .clistyle import style_factory
-from .sqlexecute import SQLExecute
-from .clibuffer import CLIBuffer
-from .completion_refresher import CompletionRefresher
-from .config import (write_default_config, get_mylogin_cnf_path,
-                     open_mylogin_cnf, CryptoError, read_config_file,
-                     read_config_files, str_to_bool)
-from .key_bindings import mycli_bindings
-from .encodingutils import utf8tounicode
-from .lexer import MyCliLexer
-from .__init__ import __version__
-
-click.disable_unicode_literals_warning = True
-
+import traceback
 try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
-from pymysql import OperationalError
 
-from collections import namedtuple
+import click
+from prompt_toolkit import AbortAction, Application, CommandLineInterface
+from prompt_toolkit.document import Document
+from prompt_toolkit.enums import DEFAULT_BUFFER
+from prompt_toolkit.filters import Always, HasFocus, IsDone
+from prompt_toolkit.history import FileHistory
+from prompt_toolkit.interface import AcceptAction
+from prompt_toolkit.layout.processors import (ConditionalProcessor,
+                                              HighlightMatchingBracketProcessor)
+from prompt_toolkit.shortcuts import create_eventloop, create_prompt_layout
+from pygments.token import Token
+from pymysql import OperationalError
+import sqlparse
+
+from .__init__ import __version__
+from .clibuffer import CLIBuffer
+from .clistyle import style_factory
+from .clitoolbar import create_toolbar_tokens_func
+from .completion_refresher import CompletionRefresher
+from .config import (CryptoError, get_mylogin_cnf_path, open_mylogin_cnf,
+                     read_config_files, str_to_bool, write_default_config)
+from .encodingutils import utf8tounicode
+from .key_bindings import mycli_bindings
+from .lexer import MyCliLexer
+from .packages import special
+from .packages.expanded import expanded_table
+from .packages.special.main import NO_QUERY
+from .packages.tabulate import table_formats, tabulate
+from .sqlcompleter import SQLCompleter
+from .sqlexecute import SQLExecute
+
+
+click.disable_unicode_literals_warning = True
 
 # Query tuples are used for maintaining history
 Query = namedtuple('Query', ['query', 'successful', 'mutating'])

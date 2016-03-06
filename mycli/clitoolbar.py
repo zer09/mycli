@@ -1,5 +1,5 @@
-from pygments.token import Token
 from prompt_toolkit.enums import DEFAULT_BUFFER
+from pygments.token import Token
 
 def create_toolbar_tokens_func(get_key_bindings, get_is_refreshing):
     """

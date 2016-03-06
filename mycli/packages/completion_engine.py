@@ -1,17 +1,15 @@
 from __future__ import print_function
-import sys
+
 import sqlparse
 from sqlparse.sql import Comparison, Identifier, Where
-from .parseutils import last_word, extract_tables, find_prev_keyword
+
+from .parseutils import extract_tables, find_prev_keyword, last_word
 from .special import parse_special_command
 
-PY2 = sys.version_info[0] == 2
-PY3 = sys.version_info[0] == 3
-
-if PY3:
-    string_types = str
-else:
+try:
     string_types = basestring
+except NameError:
+    string_types = str
 
 
 def suggest_type(full_text, text_before_cursor):

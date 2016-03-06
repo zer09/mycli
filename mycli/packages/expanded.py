@@ -1,5 +1,6 @@
-from .tabulate import _text_type
 import binascii
+
+from .tabulate import _text_type
 
 def pad(field, total, char=u" "):
     return field + (char * (total - len(field)))
